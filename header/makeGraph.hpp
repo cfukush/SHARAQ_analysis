@@ -1,3 +1,5 @@
+#ifndef makeGraph_hpp
+#define makeGraph_hpp
 #include <iostream>
 #include <string>
 #include "TH1.h"
@@ -12,3 +14,4 @@ public:
 	void makeTvsE(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry);
 };
 
+#endif

@@ -1,0 +1,11 @@
+#!/bin/bash
+cat list.txt | while read line || [[ -n "${line}" ]];
+do
+	if [[${line} != //* ]];
+	then 
+		nuclide=`echo ${line} | cut -d ',' -f1`
+		z=`echo ${line} | cut -d ',' -f2`
+		A=`echo ${line} | cut -d ',' -f3`
+		echo "name: ${nuclide}   num: ${z}   mass: ${A}"
+	fi
+done

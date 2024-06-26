@@ -1,3 +1,5 @@
+#ifndef makeGate_hpp
+#define makeGate_hpp
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,3 +14,4 @@ public:
 	TCut gate(Double_t Z, Double_t A);
 };
 
+#endif
