@@ -2,39 +2,8 @@
 #include <string>
 using namespace std;
 
-void pidsave(TCanvas *c, string name){
-    //string filepath = "./picture/envents1000000/";
-    string filepath = "./picture";
-    string pname = filepath + name + "pid.pdf";
-    c->Print(pname.c_str());
-}
-
-void histsave(TCanvas *c, string name, int firstRange, string option){
-    //string filepath = "./picture/envents1000000/";
-    string filepath = "./picture/";
-    string pname = filepath + name;
-    
-    switch (firstRange){
-       case 0: 
-            pname += "_Ecal0_from0" + option + ".pdf";
-            c->Print(pname.c_str());
-            break;
-       case 400: 
-            pname += "_Ecal0_from400" + option + ".pdf";
-            c->Print(pname.c_str());
-            break;
-       case 800: 
-            pname += "_Ecal0_from800" + option + ".pdf";
-            c->Print(pname.c_str());
-            break;
-       case 1200: 
-            pname += "_Ecal0_from1200" + option + ".pdf";
-            c->Print(pname.c_str());
-            break;
-       default: 
-            pname += "_Ecal0_allRange" + option + ".pdf";
-            c->Print(pname.c_str());
-            break;
-    }
-}
-
+class save{
+public:
+	void pidsave(TCanvas *c, string name);
+	void histsave(TCanvas *c, string name, int firstRange, string option);
+};
