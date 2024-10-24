@@ -2,6 +2,7 @@
 #define makeGate_hpp
 #include <iostream>
 #include <string>
+#include "TCut.h"
 using namespace std;
 
 class makeGate{ 

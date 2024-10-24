@@ -4,8 +4,11 @@
 #include "TTree.h"
 #include "TH2.h"
 #include "TROOT.h"
-#include "./header/makeGate.hpp"
-#include "./header/makeGraph.hpp"
+#include "TCut.h"
+#include "makeGate.hpp"
+#include "makeGraph.hpp"
+//#include "./header/makeGate.hpp"
+//#include "./header/makeGraph.hpp"
 using namespace std;
 
 void analysis(const char* rootFile, string name, Double_t Z, Double_t A);
@@ -37,23 +40,30 @@ void analysis(const char* rootFile, string name, Double_t Z, Double_t A){
 		return;
 	}
 	int bins = 400;
-	int events = 10000;
+	int events = 1000000;
 //	int events = 24867292;
 	int firstEntry = 0;
 	const int rangeElements = 5;
 	int range[rangeElements] = {0,400,800,1200,1600};
 
+	//settting ellipson gate
 	makeGate analykit;
 	TCut gate = analykit.gate(Z,A);
 
-	makeGraph graph;
-	
-	graph.makeHist(name, Z, A, gate, bins, events, firstEntry, range[0], range[4]);
-	
+	makeGraph graph(tree);
+
+	//make PID 
+	graph.makePID(name, Z, A, gate, bins, events, firstEntry);
+
+	//make energy spectrum with the range 0 to 1600, bins are 1600
+	graph.makeHist(name, Z, A, gate, 4*bins, events, firstEntry, range[0], range[4]);
+
+	//make energy spectrum separeted 400 keV energy 	
 	for(int i=0; i<rangeElements-1; i++){
 		graph.makeHist(name, Z, A, gate, bins, events, firstEntry, range[i], range[i+1]);
 	}
 
+	//make Tdiff vs Ecal 2D-hist 
 	graph.makeTvsE(name, Z, A, gate, bins, events, firstEntry);
 	gROOT->ProcessLine(".q");
 }

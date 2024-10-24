@@ -1,10 +1,10 @@
-#include "../header/save.hpp"
+#include "save.hpp"
 
 using namespace std;
 
 void save::pidsave(TCanvas *c, string name){
     //string filepath = "./picture/envents1000000/";
-    string filepath = "./picture";
+    string filepath = "./picture/";
     string pname = filepath + name + "pid.pdf";
     c->Print(pname.c_str());
 }

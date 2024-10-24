@@ -1,0 +1,25 @@
+//This file contains information on the nuclies from the experiment.
+//Written in the order of nuclide, atomic number, mass number.
+"K38",19,38
+"Ca39",20,39
+"Ca40",20,40
+"Ca41",20,41
+"Sc40",21,40
+"Sc41",21,41
+"Sc41",21,41
+"Sc42",21,42
+"Ti41",22,41
+"Ti42",22,42
+"Ti43",22,43
+"Ti44",22,43
+"V43",23,43
+"V44",23,44
+"V45",23,45
+"V46",23,46
+"Cr44",24,44
+"Cr45",24,45
+"Cr46",24,46
+"Cr47",24,47
+"Mn46",25,46
+"Mn47",25,47
+"Mn48",25,48

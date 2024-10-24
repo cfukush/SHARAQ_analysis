@@ -2,6 +2,7 @@
 #define save_hpp
 #include <iostream>
 #include <string>
+#include "TCanvas.h"
 using namespace std;
 
 class save{
