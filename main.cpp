@@ -7,8 +7,7 @@
 #include "TCut.h"
 #include "makeGate.hpp"
 #include "makeGraph.hpp"
-//#include "./header/makeGate.hpp"
-//#include "./header/makeGraph.hpp"
+
 using namespace std;
 
 void analysis(const char* rootFile, string name, Double_t Z, Double_t A);
