@@ -38,9 +38,10 @@ void analysis(const char* rootFile, string name, Double_t Z, Double_t A){
 		file->Close();
 		return;
 	}
+
 	int bins = 400;
-	int events = 1000000;
-//	int events = 24867292;
+	int events = 10000;
+	//Long64_t allevents = tree->GetEntries();
 	int firstEntry = 0;
 	const int rangeElements = 5;
 	int range[rangeElements] = {0,400,800,1200,1600};
