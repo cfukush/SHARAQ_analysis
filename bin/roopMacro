@@ -1,5 +1,5 @@
 #!/bin/bash
-cat listMain.txt | while read line || [[ -n "${line}" ]];
+cat ../listMain.txt | while read line || [[ -n "${line}" ]];
 do
 	if [[ ${line} != //* ]];
 	then 
@@ -7,6 +7,6 @@ do
 		z=`echo ${line} | cut -d ',' -f2`
 		A=`echo ${line} | cut -d ',' -f3`
 		echo "name: ${nuclide}   num: ${z}   mass: ${A}"
-		root -l /home/data/SHARAQ/sh13/tmpsort22/ge_sh_all_dn22_20000000.root "analysis.cpp(${nuclide}, ${z}, ${A})"
+		./bin/analysis /home/data/SHARAQ/sh13/tmpsort21/ge_sh_all_dn21_20000000.root ${nuclide} ${z} ${A} 
 	fi
 done
