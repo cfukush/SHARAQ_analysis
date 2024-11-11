@@ -12,10 +12,9 @@ using namespace std;
 class makeGraph{
 public: 
 	makeGraph(TTree* tree):sttree(tree){}
-	//save saver;
-	void makePID(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry);
-	void makeHist(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry, int initial, int finale);
-	void makeTvsE(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry);
+	void makePID(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry);
+	void makeHist(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry, int initial, int finale);
+	void makeTvsE(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry);
 
 private:
 	TTree *sttree;

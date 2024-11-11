@@ -1,7 +1,7 @@
 #include "makeGraph.hpp"
 using namespace std;
 
-void makeGraph::makePID(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry){
+void makeGraph::makePID(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry){
     TCanvas *c1 = new TCanvas("c1");
     c1->SetLogz();
     TH2D *h1 = new TH2D("h1", name.c_str(), bins, 1.7, 2.2, bins, 16, 28);
@@ -11,7 +11,7 @@ void makeGraph::makePID(string name, Double_t Z, Double_t A, TCut gate, int bins
     delete h1;
 }
 
-void makeGraph::makeHist(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry, int initial, int finale){
+void makeGraph::makeHist(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry, int initial, int finale){
     TCut Tgate0 = "Tdiff[1]>100&&Tdiff[1]<10000";
     TCut Tgate1 = "Tdiff[1]>200&&Tdiff[1]<10000";
     TCut Tgate2 = "Tdiff[1]>100&&Tdiff[1]<1000000";
@@ -53,7 +53,7 @@ void makeGraph::makeHist(string name, Double_t Z, Double_t A, TCut gate, int bin
     delete c5;
 }
 
-void makeGraph::makeTvsE(string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry){
+void makeGraph::makeTvsE(save saver, string name, Double_t Z, Double_t A, TCut gate, int bins, int events, int firstEntry){
     TCanvas *c22 = new TCanvas("c22");
     TH2D *h22 = new TH2D("h22",name.c_str(),bins,-10000,20000000,bins,0,1600);
     sttree->Draw("Ecal[1]:Tdiff[1]>> h22", gate, "colz", events,firstEntry);

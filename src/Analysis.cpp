@@ -29,13 +29,13 @@ void Analysis::ana(const char* rootFile, string name, Double_t Z, Double_t A, Lo
     std::cout << "Filepath: " << saver.filepath << std::endl;
 
 	makeGraph graph(tree);
-	graph.makePID(name, Z, A, gate, bins, events, firstEntry);
-	graph.makeHist(name, Z, A, gate, 4*bins, events, firstEntry, range[0], range[4]);
+	graph.makePID(saver, name, Z, A, gate, bins, events, firstEntry);
+	graph.makeHist(saver, name, Z, A, gate, 4*bins, events, firstEntry, range[0], range[4]);
 
 	for(int i=0; i<rangeElements-1; i++){
-		graph.makeHist(name, Z, A, gate, bins, events, firstEntry, range[i], range[i+1]);
+		graph.makeHist(saver, name, Z, A, gate, bins, events, firstEntry, range[i], range[i+1]);
 	}
 
-	graph.makeTvsE(name, Z, A, gate, bins, events, firstEntry);
+	graph.makeTvsE(saver, name, Z, A, gate, bins, events, firstEntry);
 	gROOT->ProcessLine(".q");
 }
