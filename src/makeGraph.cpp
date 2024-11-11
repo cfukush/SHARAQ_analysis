@@ -57,7 +57,7 @@ void makeGraph::makeTvsE(save saver, string name, Double_t Z, Double_t A, TCut g
     TCanvas *c22 = new TCanvas("c22");
     TH2D *h22 = new TH2D("h22",name.c_str(),bins,-10000,20000000,bins,0,1600);
     sttree->Draw("Ecal[1]:Tdiff[1]>> h22", gate, "colz", events,firstEntry);
-    string p22name = "./picture/" + name + "_ET.pdf";
+    string p22name = saver.filepath + name + "_ET.pdf";
     c22->Print(p22name.c_str());
     delete h22;
     delete c22;

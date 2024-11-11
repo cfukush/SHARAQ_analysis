@@ -4,6 +4,8 @@
 #include <time.h>
 #include <getopt.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include "TROOT.h"
 #include "TFile.h"
 #include "TTree.h"
@@ -16,11 +18,12 @@ static void usage();
 
 int main(int argc, char* argv[]){
 	string outdir = "./picture/";
+	string outdirEachNucl = "";
 	int firstEntry = 0;
 	int c;
 	Long64_t events = 0;
 	
-	while((c = getopt(argc, argv, "h:e:f:d:"))!= -1){
+	while((c = getopt(argc, argv, "h:e:f:d:n:"))!= -1){
 		switch(c){
 			case 'h':
 				usage();
@@ -32,7 +35,11 @@ int main(int argc, char* argv[]){
 				firstEntry = (int)atoi(optarg);
 				break;
 			case 'd':
-				outdir = optarg;
+				outdir = "./" + string(optarg) + "/";
+				break;
+			case 'n':
+				outdirEachNucl = string(optarg);
+				outdir = outdir + outdirEachNucl + "/";
 				break;
 			default :
 				usage();
@@ -72,6 +79,12 @@ int main(int argc, char* argv[]){
 	std::cout << "Atiomin number: " << Z << std::endl;
 	std::cout << "Mass number: " << A << std::endl;
 
+	struct stat info;
+	if(stat(outdir.c_str(), &info)!=0){
+		std::cout << "There's no directory " << outdir << " ." << endl;
+		mkdir(outdir.c_str(), 0777);
+		std::cout << "Create new directory."  << endl;
+	}
 
 	Analysis *Ana = new Analysis();
 	Ana->ana(rootFile, name, Z, A, events, firstEntry, outdir);
@@ -87,7 +100,8 @@ static void usage()
 	 std::cout << " -h: show this help" << std::endl;
 	 std::cout << " -e [num]: number of events to be analyzed, default: MAX events" << std::endl;
 	 std::cout << " -f : first entry event for analysis, default: 0" << std::endl;
-	 std::cout << " -d [dir]: directory of output files (X/*.root), default: ./picture" << std::endl;
+	 std::cout << " -d [dir]: directory of output files (X/*.pdf), default: ./picture" << std::endl;
+	 std::cout << " -n [dir]: directory of output files with nuclide name (X/nuclide/*.pdf)" << std::endl;
 	 return;
 }
 
