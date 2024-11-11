@@ -1,8 +1,8 @@
 # SHARAQ_analysis
-##requirements
+## requirements
 ROOT > 6.28
 
-#installation
+## installation
 ```
 git clone https://github.com/cfukush/SHARAQ_analysis.git
 make clean;make
@@ -10,7 +10,7 @@ make clean;make
 then Analysis file was created in ./bin directory
 
 
-##usage
+## usage
 Analysis was performed 
 ```
 ./bin/Analysis [option] [rootfile] [nuclide] [atomic number] [mass number]
