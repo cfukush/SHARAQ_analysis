@@ -2,16 +2,22 @@
 
 using namespace std;
 
+void save::setFilepath(string path){
+	filepath = path;
+	cout << filepath << endl;
+}
+
 void save::pidsave(TCanvas *c, string name){
     //string filepath = "./picture/envents1000000/";
-    string filepath = "./picture/";
+    //string filepath = "./picture/";
+	cout << filepath << endl;
     string pname = filepath + name + "pid.pdf";
     c->Print(pname.c_str());
 }
 
 void save::histsave(TCanvas *c, string name, int firstRange, string option){
     //string filepath = "./picture/envents1000000/";
-    string filepath = "./picture/";
+    //string filepath = "./picture/";
     string pname = filepath + name;
     
     switch (firstRange){

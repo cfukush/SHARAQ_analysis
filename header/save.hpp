@@ -7,6 +7,8 @@ using namespace std;
 
 class save{
 public:
+	string filepath;
+	void setFilepath(string path);
 	void pidsave(TCanvas *c, string name);
 	void histsave(TCanvas *c, string name, int firstRange, string option);
 };
