@@ -26,7 +26,6 @@ void Analysis::ana(const char* rootFile, string name, Double_t Z, Double_t A, Lo
 
 	save saver;
 	saver.setFilepath(dir);
-    std::cout << "Filepath: " << saver.filepath << std::endl;
 
 	makeGraph graph(tree);
 	graph.makePID(saver, name, Z, A, gate, bins, events, firstEntry);
