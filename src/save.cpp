@@ -8,16 +8,11 @@ void save::setFilepath(string path){
 }
 
 void save::pidsave(TCanvas *c, string name){
-    //string filepath = "./picture/envents1000000/";
-    //string filepath = "./picture/";
-	cout << filepath << endl;
     string pname = filepath + name + "pid.pdf";
     c->Print(pname.c_str());
 }
 
 void save::histsave(TCanvas *c, string name, int firstRange, string option){
-    //string filepath = "./picture/envents1000000/";
-    //string filepath = "./picture/";
     string pname = filepath + name;
     
     switch (firstRange){
