@@ -63,7 +63,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 	TTree *tree = (TTree*)file->Get("sttree");
-    if (!tree) {
+	if (!tree) {
 		std::cerr << "Error accessing TTree in ROOT file: " << rootFile << std::endl;
 		file->Close();
 		exit(1);
