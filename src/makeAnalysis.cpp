@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <cctype>
+#include <fstream>
 #include "TROOT.h"
 #include "TFile.h"
 #include "TTree.h"
@@ -15,6 +17,7 @@
 #include "Analysis.hpp"
 
 static void usage();
+void searchNuclide(string name, Double_t *A, Double_t *Z);
 
 int main(int argc, char* argv[]){
 	string outdir = "./picture/";
@@ -22,6 +25,8 @@ int main(int argc, char* argv[]){
 	int firstEntry = 0;
 	int c;
 	Long64_t events = 0;
+	Double_t Z = 0;
+	Double_t A = 0;
 	
 	while((c = getopt(argc, argv, "h:e:f:d:n:"))!= -1){
 		switch(c){
@@ -49,7 +54,7 @@ int main(int argc, char* argv[]){
 	argc -= optind;
 	argv += optind;
 
-	if(argc != 4){
+	if(argc != 2){
 		usage();
 		exit(1);
 	}
@@ -73,10 +78,10 @@ int main(int argc, char* argv[]){
 	}
 
 	string name = argv[1];
-	Double_t Z = atof(argv[2]); 
-	Double_t A = atof(argv[3]);
+	searchNuclide(name, &A, &Z);
+	 
 	std::cout << "Nuclide you focus on: " << name << std::endl;
-	std::cout << "Atiomin number: " << Z << std::endl;
+	std::cout << "Atiomic number: " << Z << std::endl;
 	std::cout << "Mass number: " << A << std::endl;
 
 	struct stat info;
@@ -95,7 +100,7 @@ int main(int argc, char* argv[]){
 
 static void usage()
 {
-	 std::cout << " usage: ./bin/Analysis [option] [rootfile] [name] [Z] [A]"  << std::endl;
+	 std::cout << " usage: ./bin/Analysis [option] [rootfile] [name]"  << std::endl;
 	 std::cout << " options" << std::endl;
 	 std::cout << " -h: show this help" << std::endl;
 	 std::cout << " -e [num]: number of events to be analyzed, default: MAX events" << std::endl;
@@ -105,3 +110,46 @@ static void usage()
 	 return;
 }
 
+void searchNuclide(string name,  Double_t *A, Double_t *Z){
+	std::fstream file("./elementsList.txt");
+	std::string line;
+	std::string fileEleName;
+	if (!file.is_open()) {
+		std::cerr << "Error: Unable to open elementsList.txt file." << std::endl;
+		exit(1);
+	}
+
+	for(char ch : name){
+		if(std::isdigit(ch)){
+			*A += *A*10 + (ch-'0');
+		}
+		else if(std::isalpha(ch)){
+			fileEleName += ch;
+		}
+	}	
+
+    if (fileEleName.empty() || *A == 0) {
+		std::cerr << "Error: Invalid input format. Expected format: [mass number][element symbol] (e.g., 45Cr)." << std::endl;
+		exit(1);
+	}
+
+	while(std::getline(file, line)){
+		std::istringstream iss(line);
+		std::string fileElement;
+		Double_t fileNum;
+
+		if(iss >> fileElement >> fileNum){
+			if(fileElement == fileEleName){
+				*Z = fileNum;
+				break;
+			}
+		}
+	}
+	file.close();
+
+	if (*Z == 0) {
+		std::cerr << "Error: Element " << fileEleName << " not found in elementsList.txt." << std::endl;
+		exit(1);
+	}
+
+}
