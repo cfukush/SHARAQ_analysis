@@ -13,10 +13,10 @@ then Analysis file was created in ./bin directory
 ## usage
 Analysis was performed 
 ```
-./bin/Analysis [option] [rootfile] [nuclide] [atomic number] [mass number]
+./bin/Analysis [option] [rootfile] [nuclide]
 ```
 ```
-usage: ./bin/Analysis [option] [rootfile] [name] [Z] [A]
+usage: ./bin/Analysis [option] [rootfile] [name]
 options
 -h: show this help
 -e [num]: number of events to be analyzed, default: MAX events
