@@ -4,7 +4,6 @@ using namespace std;
 
 void save::setFilepath(string path){
 	filepath = path;
-	cout << filepath << endl;
 }
 
 void save::pidsave(TCanvas *c, string name){
