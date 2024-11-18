@@ -4,9 +4,7 @@ do
 	if [[ ${line} != //* ]];
 	then 
 		nuclide=`echo ${line} | cut -d ',' -f1`
-		z=`echo ${line} | cut -d ',' -f2`
-		A=`echo ${line} | cut -d ',' -f3`
-		echo "name: ${nuclide}   num: ${z}   mass: ${A}"
-		./bin/Analysis /home/data/SHARAQ/sh13/tmpsort21/ge_sh_all_dn21_20000000.root ${nuclide} ${z} ${A} 
+		echo "name: ${nuclide}"
+		./bin/Analysis /home/data/SHARAQ/sh13/tmpsort21/ge_sh_all_dn21_20000000.root ${nuclide}
 	fi
 done
