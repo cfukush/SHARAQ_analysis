@@ -25,7 +25,7 @@ options
 -n [dir]: directory of output files with nuclide name (X/nuclide/*.pdf)
 ```
 
-if you want to analysis all nuclide on PID, you can use roopAnalysis
+if you want to analize all nuclide on PID, you can use roopAnalysis
 ```
 ./bin/roopAnalysis
 ```
