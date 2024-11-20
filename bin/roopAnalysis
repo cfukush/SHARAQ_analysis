@@ -1,10 +1,13 @@
 #!/bin/bash
+rootFilePath=$1 
+echo $rootFilePath
 cat ../listMain.txt | while read line || [[ -n "${line}" ]];
+
 do
 	if [[ ${line} != //* ]];
 	then 
 		nuclide=`echo ${line} | cut -d ',' -f1`
 		echo "name: ${nuclide}"
-		./bin/Analysis /home/data/SHARAQ/sh13/tmpsort21/ge_sh_all_dn21_20000000.root ${nuclide}
+		./bin/Analysis rootFilePath ${nuclide}
 	fi
 done
