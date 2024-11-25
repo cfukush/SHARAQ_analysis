@@ -17,7 +17,7 @@
 #include "Analysis.hpp"
 
 static void usage();
-void searchNuclide(string name, Double_t *A, Double_t *Z);
+static void searchNuclide(string name, Double_t *A, Double_t *Z);
 
 int main(int argc, char* argv[]){
 	string outdir = "./picture/";
