@@ -110,7 +110,7 @@ static void usage()
 	 return;
 }
 
-void searchNuclide(string name,  Double_t *A, Double_t *Z){
+static void searchNuclide(string name,  Double_t *A, Double_t *Z){
 	std::fstream file("./elementsList.txt");
 	std::string line;
 	std::string fileEleName;
@@ -121,7 +121,7 @@ void searchNuclide(string name,  Double_t *A, Double_t *Z){
 
 	for(char ch : name){
 		if(std::isdigit(ch)){
-			*A += *A*10 + (ch-'0');
+			*A = *A*10 + (ch-'0');
 		}
 		else if(std::isalpha(ch)){
 			fileEleName += ch;
